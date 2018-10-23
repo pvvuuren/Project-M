@@ -13,7 +13,7 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 async def game():
 		await client.wait_until_ready()
-		await client.change_presence(game=discord.Game(name="Cloak & Dagger"))
+		await client.change_presence(game=discord.Game(name="watching you"))
 		await asyncio.sleep(3)
 
 
