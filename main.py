@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
 import os
 import discord      # pip3 install discord.py
 import asyncio
@@ -7,6 +7,7 @@ from discord.ext import commands
 
 key = os.environ['TOKEN']
 
+# Default command prefix is set to '>', change it here if you want
 PREFIX = ">"
 
 # Creating selfbot instance
