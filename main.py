@@ -17,7 +17,6 @@ bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', se
 # L I S T E N E R S #
 #####################
 
-@bot.event
 async def on_ready():
     print(
             "\n +--------------------------------------------+"
