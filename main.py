@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import os
 import discord
 import asyncio
@@ -51,7 +53,7 @@ async def status(ctx, *args):
             else:
                 await bot.change_presence(game=cgame, status=stati[args[0]], afk=False)
                 print(stati[args[0]])
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `%s`." % args[0], color=Color.gold()))
+            msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `watching you" % args[0], color=Color.gold()))
     else:
         await bot.change_presence(game=cgame, status=Status.online, afk=False)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `online`.", color=Color.gold()))
@@ -59,50 +61,6 @@ async def status(ctx, *args):
     await asyncio.sleep(3)
     await bot.delete_message(msg)
 
-
-@bot.command(pass_context=True)
-async def faq(ctx, *args):
-
-    if args:
-        if args[0] in FAQS:
-            await bot.send_message(ctx.message.channel, embed=FAQS[args[0]][0])
-    else:
-        cont = ""
-        for k, v in FAQS.items():
-            cont += "*%s*  -  `%s`\n" % (v[1], k)
-        await bot.send_message(ctx.message.channel, embed=Embed(description=cont))
-    await bot.delete_message(ctx.message)
-
-
-@bot.command(pass_context=True, aliases=['google'])
-async def lmgtfy(ctx, *args):
-
-    if args:
-        url = "http://lmgtfy.com/?q=" + "+".join(args)
-        await bot.send_message(ctx.message.channel, embed=Embed(description="**[Look here!](%s)**" % url, color=Color.gold()))
-    await bot.delete_message(ctx.message)
-
-
-@bot.command(pass_context=True, aliases=['gnick', 'gn'])
-async def globalnick(ctx, *args):
-
-    if args:
-        newname = args[0]
-        errors = []
-        for s in bot.servers:
-            await bot.edit_message(ctx.message, embed=Embed(description="Changing nickname on `%s`..." % s.name))
-            try:
-                await bot.change_nickname(s.get_member(bot.user.id), newname)
-            except:
-                errors.append(s.name)
-                pass
-        if errors:
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.red(), description="**Failed changing nickanme on following servers:**\n\n" + "\n".join(errors)))
-        else:
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Successfully changed nick on all servers!"))
-    await bot.delete_message(ctx.message)
-    await asyncio.sleep(3)
-    await bot.delete_message(msg)
 
 bot.run(key)
 
