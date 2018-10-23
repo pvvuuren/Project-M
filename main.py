@@ -12,8 +12,6 @@ PREFIX = ">"
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
 
-
-
 ###################
 # C O M M A N D S #
 ###################
