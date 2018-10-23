@@ -1,4 +1,4 @@
-import os
+﻿import os
 import discord      # pip3 install discord.py
 import asyncio
 from discord import Game, Embed, Color, Status, ChannelType
