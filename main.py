@@ -13,32 +13,6 @@ PREFIX = ">"
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
 
 
-#####################
-# L I S T E N E R S #
-#####################
-
-async def on_ready():
-    print(
-            "\n +--------------------------------------------+"
-            "\n |        senjouBot - discord self-bot        |"
-            "\n | (c) 2017 Ringo Hoffman (zekro Development) |"
-            "\n +--------------------------------------------+\n"
-         )
-    print("Logged in as %s#%s" % (bot.user.name, bot.user.discriminator))
-    print("ID: " + bot.user.id)
-    
-
-@bot.event
-async def on_message(msg):
-    if msg.author == bot.user:
-        for k, v in REPLACES.items():
-            if k in msg.content:
-                await bot.edit_message(msg, msg.content.replace(k, v))
-                
-    await bot.process_commands(msg)
-
-
-
 ###################
 # C O M M A N D S #
 ###################
