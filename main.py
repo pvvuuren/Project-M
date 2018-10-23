@@ -1,8 +1,9 @@
+import os
 import discord      # pip3 install discord.py
 import asyncio
 from discord import Game, Embed, Color, Status, ChannelType
 from discord.ext import commands
-from os import path
+#from os import path
 
 key = os.environ['TOKEN']
 
