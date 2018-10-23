@@ -1,5 +1,4 @@
-# coding=<ANSI>
-
+#!/usr/local/bin/python
 import os
 import discord      # pip3 install discord.py
 import asyncio
