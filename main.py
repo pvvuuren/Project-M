@@ -1,7 +1,7 @@
 import os
 import discord
 import asyncio
-from discord import Game, Embed, Color, Status, ChannelType
+from discord import Game, Status
 from discord.ext import commands
 
 key = os.environ['TOKEN']
@@ -12,13 +12,10 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 
 @bot.command(pass_context=True, aliases=['g'])
-async def game(ctx, *args):
-    """
-    Command for changing 'game' status
-    """
+async def game(ctx, args):
+
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
-        txt = " ".join(args)
         await bot.change_presence(game=Game(name=txt), status=cstatus)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
     else:
