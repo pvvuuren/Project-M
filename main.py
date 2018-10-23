@@ -1,9 +1,8 @@
-import discord      # pip3 install discord.py
+import os
+import discord
 import asyncio
-import giphypop     # pip3 install giphypop
-from discord import Game, Embed, Color, Status, ChannelType
+from discord import Game, Status
 from discord.ext import commands
-from os import path
 
 key = os.environ['TOKEN']
 # Default command prefix is set to '>', change it here if you want
