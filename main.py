@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 
 @bot.command(pass_context=True, aliases=['g'])
-async def game(ctx, *args):
+async def game():
 
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
@@ -30,7 +30,7 @@ async def game(ctx, *args):
 
 
 @bot.command(pass_context=True, aliases=['s'])
-async def status(ctx, *args):
+async def status():
 
     stati = {
         "on":       Status.online,
