@@ -7,7 +7,7 @@ from copy import deepcopy
 
 key = os.environ['TOKEN']
 
-client = discord.Client()
+client = discord.Client(self_bot=True))
 
 async def background_loop():
     await client.wait_until_ready()
