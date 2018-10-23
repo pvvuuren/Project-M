@@ -1,8 +1,6 @@
 import os
 import discord
 import asyncio
-import random
-from copy import deepcopy
 
 key = os.environ['TOKEN']
 
