@@ -7,6 +7,18 @@ from discord.ext import commands
 
 key = os.environ['TOKEN']
 
+PREFIX = ">"
+
+# Here you can define which message invokes should be automatically replced
+REPLACES = {
+    "-lenny-": "( ͡° ͜ʖ ͡°)",
+    "-meh-": "¯\_(ツ)_/¯",
+    "-wut-": "ಠ_ಠ",
+    "-yeah-": "(⌐■_■)",
+    "-tt-": "(╯°□°）╯︵ ┻━┻",
+    "-give-": "༼ つ ◕_◕ ༽つ",
+}
+
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
 
