@@ -3,7 +3,6 @@ import discord      # pip3 install discord.py
 import asyncio
 from discord import Game, Embed, Color, Status, ChannelType
 from discord.ext import commands
-#from os import path
 
 key = os.environ['TOKEN']
 
@@ -11,7 +10,7 @@ PREFIX = ">"
 
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
-
+# what
 ###################
 # C O M M A N D S #
 ###################
