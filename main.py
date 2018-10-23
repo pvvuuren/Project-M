@@ -5,36 +5,9 @@ from discord import Game, Embed, Color, Status, ChannelType
 from discord.ext import commands
 from os import path
 
-
-# If you have an own giphy token, please use it for this bot,
-# because the API creator warned that the public giphy token,
-# which is used, when no token is entered, should be only used for
-# testing purposes and will be determinated maybe later.
-# You can get a api key here: https://github.com/Giphy/GiphyAPI
-GIPHY_TOKEN = ""
-
+key = os.environ['BOT_TOKEN']
 # Default command prefix is set to '>', change it here if you want
 PREFIX = ">"
-
-# Add here entries for the FAQ command like following
-# "key for command": [Embed(), "Description"]
-FAQS = {
-    "addbot": [Embed(description="[zekroBot - Get It](https://github.com/zekroTJA/DiscordBot#get-it)", color=Color.gold()), "zekroBot Get It"],
-    "support": [Embed(description="[Support Guideline](https://gist.github.com/zekroTJA/ced58eb57642acc1e0c39f010e33975d)", color=Color.green()), "Support Guideline"],
-    "userbots": [Embed(description="Invite with: `!invite <botID>`\n[User Bot Rules](https://gist.github.com/zekroTJA/485972bbe3b607dee7c91278577be26c)"), "User Bots"],
-    "faq": [Embed(description="[zekro FAQ](https://gist.github.com/zekroTJA/75d2da53b01a4c76db27ef6befbfabf6)", color=Color.blue()), "zekro FAQ"]
-}
-
-# Here you can define which message invokes should be automatically replced
-REPLACES = {
-    "-lenny-": "( ͡° ͜ʖ ͡°)",
-    "-meh-": "¯\_(ツ)_/¯",
-    "-wut-": "ಠ_ಠ",
-    "-yeah-": "(⌐■_■)",
-    "-tt-": "(╯°□°）╯︵ ┻━┻",
-    "-give-": "༼ つ ◕_◕ ༽つ",
-}
-
 
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
@@ -46,10 +19,6 @@ bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', se
 
 @bot.event
 async def on_ready():
-    """
-    Printing username + discriminator and user ID
-    when bot is finished logging in and ready
-    """
     print(
             "\n +--------------------------------------------+"
             "\n |        senjouBot - discord self-bot        |"
@@ -62,10 +31,6 @@ async def on_ready():
 
 @bot.event
 async def on_message(msg):
-    """
-    Replace invokes in your message automatically with other text like emotes.
-    Invokes and replacements can be defined in 'REPLACES' dict above.
-    """
     if msg.author == bot.user:
         for k, v in REPLACES.items():
             if k in msg.content:
@@ -81,17 +46,11 @@ async def on_message(msg):
 
 @bot.command(pass_context=True)
 async def test(ctx, *args):
-    """
-    Just a command for testing purposes and debugging
-    """
     print(ctx.message.server.get_member(bot.user.id).game)
 
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
-    """
-    Command for changing 'game' status
-    """
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
         await bot.change_presence(game=Game(name=txt), status=cstatus)
@@ -106,9 +65,6 @@ async def game(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['em', 'e'])
 async def embed(ctx, *args):
-    """
-    Sending embeded messages with color (and maby later title, footer and fields)
-    """
     colors = {
         "red": Color.red(),
         "green": Color.green(),
@@ -131,12 +87,6 @@ async def embed(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['s'])
 async def status(ctx, *args):
-    """
-    Change account status visible for others*
-    *an effect of using a userbot is, that the bot displays your status as 'online'
-    for other users while you can change your status to 'idle' or 'dnd', but
-    noone will see it until the bot changes the status.
-    """
     stati = {
         "on":       Status.online,
         "online":   Status.online,
@@ -165,11 +115,6 @@ async def status(ctx, *args):
 
 @bot.command(pass_context=True)
 async def faq(ctx, *args):
-    """
-    Thats just a verry helpful command for myself because a lot of people
-    asking me always the same questions in PM, so I can answer with
-    this short command easily.
-    """
     if args:
         if args[0] in FAQS:
             await bot.send_message(ctx.message.channel, embed=FAQS[args[0]][0])
@@ -183,9 +128,6 @@ async def faq(ctx, *args):
 
 @bot.command(pass_context=True)
 async def gif(ctx, *args):
-    """
-    A simple command to send gifs by keyword from giphy api
-    """
     if args:
         query = " ".join(args)
         index = 0
@@ -204,11 +146,6 @@ async def gif(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['server'])
 async def guild(ctx, *args):
-    """
-    Shows stats and information about current guild.
-    ATTENTION: Please only use this on your own guilds or with explicit
-    permissions of the guilds administrators!
-    """
     if ctx.message.channel.is_private:
         await bot.delete_message(ctx.message)
         return
@@ -251,10 +188,6 @@ async def guild(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['google'])
 async def lmgtfy(ctx, *args):
-    """
-    Just a simple lmgtfy command embeding the link into the message.*
-    *Links are still visible because discord asks you if this link is safe :/
-    """
     if args:
         url = "http://lmgtfy.com/?q=" + "+".join(args)
         await bot.send_message(ctx.message.channel, embed=Embed(description="**[Look here!](%s)**" % url, color=Color.gold()))
@@ -263,12 +196,6 @@ async def lmgtfy(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['gnick', 'gn'])
 async def globalnick(ctx, *args):
-    """
-    With this command, you can change your nickname on all discord servers
-    you are on and you have the permission to chnage your nickname.
-    ATTENTION: Please don't overuse this command because I dont know,
-    if it could lead to a discord account ban!
-    """
     if args:
         newname = args[0]
         errors = []
@@ -287,22 +214,5 @@ async def globalnick(ctx, *args):
     await asyncio.sleep(3)
     await bot.delete_message(msg)
 
-
-# Testing if file 'token.txt' exists. If it is so, then the token
-# will be read out of this file. If not, the user will be asked
-# for the token in the console to enter, wich will be saved in this
-# file after and the bot will log in
-if path.isfile("token.txt"):
-    with open("token.txt") as f:
-        token = f.readline()
-    print("[INFO] Starting up and logging in...")
-    bot.run(token, bot=False)
-else:
-    print("Please enter your discord account token (bot a bot account token!):")
-    token = input()
-    print("[INFO] Saving token...")
-    with open("token.txt", "w") as f:
-        f.write(token)
-    print("[INFO] Starting up and logging in...")
     bot.run(token, bot=False)
 
