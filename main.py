@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*- 
 import os
 import discord
 import asyncio
@@ -14,13 +12,14 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 
 @bot.command(pass_context=True, aliases=['g'])
-async def game():
+async def game(ctx, *args):
 
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
-        txt = " ".join(args)
-        await bot.change_presence(game=Game(name=txt), status=cstatus)
-        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `watching you" % txt))
+		try:
+            txt = " ".join(args)
+            await bot.change_presence(game=Game(name=txt), status=cstatus)
+            msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `watching you" % txt))
     else:
         await bot.change_presence(game=None, status=cstatus)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
@@ -30,7 +29,7 @@ async def game():
 
 
 @bot.command(pass_context=True, aliases=['s'])
-async def status():
+async def status(ctx, *args):
 
     stati = {
         "on":       Status.online,
@@ -49,7 +48,7 @@ async def status():
             else:
                 await bot.change_presence(game=cgame, status=stati[args[0]], afk=False)
                 print(stati[args[0]])
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `watching you" % args[0], color=Color.gold()))
+            msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `dnd" % args[0], color=Color.gold()))
     else:
         await bot.change_presence(game=cgame, status=Status.online, afk=False)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `online`.", color=Color.gold()))
@@ -57,6 +56,4 @@ async def status():
     await asyncio.sleep(3)
     await bot.delete_message(msg)
 
-
 bot.run(key)
-
