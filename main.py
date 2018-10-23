@@ -9,6 +9,7 @@ key = os.environ['TOKEN']
 
 client = discord.Client(self_bot=True))
 
+@bot.event
 async def background_loop():
     await client.wait_until_ready()
     await client.change_presence(game=discord.Game(name="Watching you"))
