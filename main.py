@@ -11,11 +11,7 @@ key = os.environ['TOKEN']
 PREFIX = ">"
 
 bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
-
-
-###################
-# C O M M A N D S #
-###################
+  
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
