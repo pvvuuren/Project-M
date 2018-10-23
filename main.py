@@ -11,12 +11,12 @@ PREFIX = ">"
 
 # Here you can define which message invokes should be automatically replced
 REPLACES = {
-    "-lenny-": "( ͡° ͜ʖ ͡°)",
-    "-meh-": "¯\_(ツ)_/¯",
-    "-wut-": "ಠ_ಠ",
-    "-yeah-": "(⌐■_■)",
-    "-tt-": "(╯°□°）╯︵ ┻━┻",
-    "-give-": "༼ つ ◕_◕ ༽つ",
+    "-lenny-": "0",
+    "-meh-": "0",
+    "-wut-": "0",
+    "-yeah-": "0",
+    "-tt-": "0",
+    "-give-": "0",
 }
 
 # Creating selfbot instance
