@@ -17,11 +17,6 @@ bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', se
 # C O M M A N D S #
 ###################
 
-#@bot.command(pass_context=True)
-async def test(ctx, *args):
-    print(ctx.message.server.get_member(bot.user.id).game)
-
-
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
     if args:
