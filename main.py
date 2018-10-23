@@ -57,4 +57,4 @@ async def status(ctx, *args):
     await asyncio.sleep(3)
     await bot.delete_message(msg)
 
-    bot.run(token, bot=False)
+    bot.run(key, bot=False)
