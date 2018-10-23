@@ -13,18 +13,11 @@ PREFIX = ">"
 
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
-# what
+
+
 ###################
 # C O M M A N D S #
 ###################
-
-@bot.command(pass_context=True)
-async def test(ctx, *args):
-    """
-    Just a command for testing purposes and debugging
-    """
-    print(ctx.message.server.get_member(bot.user.id).game)
-
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
@@ -35,38 +28,13 @@ async def game(ctx, *args):
         cstatus = ctx.message.server.get_member(bot.user.id).status
         txt = " ".join(args)
         await bot.change_presence(game=Game(name=txt), status=cstatus)
-        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
+        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `watching you" % txt))
     else:
         await bot.change_presence(game=None, status=cstatus)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
     await bot.delete_message(ctx.message)
     await asyncio.sleep(3)
     await bot.delete_message(msg)
-
-
-@bot.command(pass_context=True, aliases=['em', 'e'])
-async def embed(ctx, *args):
-    """
-    Sending embeded messages with color (and maby later title, footer and fields)
-    """
-    colors = {
-        "red": Color.red(),
-        "green": Color.green(),
-        "gold": Color.gold(),
-        "orange": Color.orange(),
-        "blue": Color.blue()
-    }
-    if args:
-        argstr = " ".join(args)
-        if "-c " in argstr:
-            text = argstr.split("-c ")[0]
-            color_str = argstr.split("-c ")[1]
-            color = colors[color_str] if color_str in colors else Color.default()
-        else:
-            text = argstr
-            color = Color.default()
-        await bot.send_message(ctx.message.channel, embed=Embed(color=color, description=text))
-    await bot.delete_message(ctx.message)
 
 
 @bot.command(pass_context=True, aliases=['s'])
