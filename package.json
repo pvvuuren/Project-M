@@ -1,0 +1,13 @@
+{
+  "name": "main",
+  "desciption": "Selfbot",
+  "version": "0.0.0",
+  "main": "main.py",
+  "scripts": {
+    "start": "node main.py"
+  },
+  "dependencies": {
+    "discord.js": "11.1.0",
+	"request": "2.81.0"
+	}
+}	

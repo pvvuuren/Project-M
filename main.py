@@ -1,6 +1,5 @@
 import discord      # pip3 install discord.py
 import asyncio
-import giphypop     # pip3 install giphypop
 from discord import Game, Embed, Color, Status, ChannelType
 from discord.ext import commands
 from os import path
