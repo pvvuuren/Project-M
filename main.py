@@ -13,13 +13,14 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
-
+    """
+    Command for changing 'game' status
+    """
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
-		try:
-            txt = " ".join(args)
-            await bot.change_presence(game=Game(name=txt), status=cstatus)
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `watching you" % txt))
+        txt = " ".join(args)
+        await bot.change_presence(game=Game(name=txt), status=cstatus)
+        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
     else:
         await bot.change_presence(game=None, status=cstatus)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
