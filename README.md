@@ -1,49 +1,107 @@
-# Discord Selfbot
+# senjouBot - a python discord self-bot
 
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FFDATZ8NFFV6Y) [<img src="https://img.shields.io/github/license/appu1232/Discord-Selfbot.svg?style=flat-square">](https://github.com/appu1232/Discord-Selfbot/blob/master/LICENSE) [![Build Status](https://travis-ci.org/appu1232/Discord-Selfbot.svg?branch=master)](https://travis-ci.org/appu1232/Discord-Selfbot)
+### DISCLAIMER
+If you decide to use this bot on your own Discord account(s), I will not be liable if your accounts are getting banned! Written in the Discord API TOS, self bot's are not allowed and, if they get detected, you will get banned!  
 
-### IMPORTANT: **If you are running into [this issue](https://i.imgur.com/h9naJ77.png) with starting the bot, please uninstall Python version 3.5.2 and install [3.5.3 or higher](https://www.python.org/downloads/release/python-365/). Make sure you check "add to PATH" on install.**
+*"[...] Automating normal user accounts (generally called "self-bots") outside of the OAuth2/bot API is 
+forbidden, and can result in an account termination if found."* *- quote [Discord Bots TOS](https://discordapp.com/developers/docs/topics/oauth2#bot-vs-user-accounts)*
 
-### [**Install guide + list of all commands.**](https://github.com/appu1232/Discord-Selfbot/wiki)
+---
 
-Takes less than 2 minutes to set up. Has various commands and utilities including a keyword logger/notifier, adding custom commands/reactions, and much more.
+### PLEASE READ BEFORE USAGE
 
-![](http://i.imgur.com/3H9zpop.gif)
+If you want to use this bot or the code of it in any way in your own projects, please read this before:  
+**[zekro Open Source Code Policy](https://gist.github.com/zekroTJA/adbce830d6c876661cb7d7244ecb19b8)**
 
-## Features
+---
 
-- Google web and image search.
-- Keyword/user logger and notifier. Get notified when keywords you specified are said in any of your server or follow users and get notified when they send a message (with a cooldown). Useful to track someone or see if someone mentioned your name or your favorite show/book/whatever else keywords and you want to stalk— I mean, talk to them about it.
-- Set your game/stream to anything or set up multiple and cycle through them.
-- Cycle through avatars automatically.
-- Save image/gif/webm dumps (urls or attachments) in channels quickly to your computer (checks for duplicates as well).
-- Detailed image/gif source finder using sauce.nao
-- Add custom commands/reactions. The commands get saved to ``commands.json`` which has some sample commands added to start with. Can be used as macros for other commands as well.
-- Custom embeds.
-- Todo list with notifications and a timer (repeatable) as well as ability to send a message to a channel when the timer goes off.
-- Smart MyAnimeList search of anime and manga/LNs using google custom search (and if that fails, using myanimelist's api for search)
-- Save/output the last n number of messages from a chat, including any messages that were deleted.
-- Get detailed information about a server and all of its members.
-- Purge the last n messages you sent in a channel.
-- Simple calculator.
-- Quick commands so you can post pointless stuff as fast as possible like ``lenny``, ``shrug``, ``flip``, ``unflip``, and ``comeatmebro``
-- Meme commands like spacing text, converting text to regional indicator emojis, mass reacting to messages, and converting text to ascii art.
-- Python interpreter. Modeled off of RoboDanny's ?debug command. Does both exec() and eval(). Ability to save and load scripts.
-- Various other misc commands like spoiler tagging text (encrypts the text), creating strawpolls, embeding text, server/user info commands, and more.
+### DESCRIPTION
 
-## Acknowledgements
+This is a little Discord self-bot I'm currenty working on. It will not have so much functions, just little things like sending gifs, creating embed messages, changing game and status and such stuff.
 
-- Thanks to [architdate](https://github.com/architdate), [LyricLy](https://github.com/LyricLy), and [chenzw95](https://github.com/chenzw95) for actively participating in development, addition of new features, and other optimizations.
-- Thanks to [Hubcapp](https://github.com/Hubcapp) for the much improved >react command.
-- Thanks to [adjnouobsref](https://github.com/adjnouobsref) for the spoiler tags and various other contributions.
-- Used the code for lockdown commands from [Kurisu](https://github.com/916253/Kurisu/blob/master/addons/lockdown.py) bot. Slight modifications is message sending and contents of messages.
-- Used a lot of [Danny's](https://github.com/Rapptz) code for certain parts, especially parsing Google cards and the debugger.
-- Used [eye-sigil's](https://github.com/eye-sigil) code for the >repl command.
-- Thanks to [IgneelDxD](https://github.com/IgneelDxD) for a lot of suggestions and fixes.
-- Thanks to [Bluscream](https://github.com/Bluscream) for a lot of helpful pull requests and custom cogs.
+---
+### CURRENT FEATURES  
+*{this is an argument} - ({this is an optional argument}) - {these|are|valid|argument|options}*
 
-## Buy me a cup of coffee
+- **game** [`g`]  
+`>game ({string})`  
+With this command you can change the displayed game *(`Playing...`)*.  
+*Enter no argument to disbale game display.*
 
-This bot is open source and always will be, even if I don't get donations. That said, I know there are people out there that may still want to donate just to show their appreciation so this is for you guys. Thanks in advance!
+- **embed** [`em`, `e`]  
+`>embed {message} ({-c red|green|blue|gold|orange})`  
+Sending colored embed messages, maby later with title and fields.  
+![img](http://zekro.de/ss/Discord_2017-10-19_21-57-40.jpg)
 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=FFDATZ8NFFV6Y)
+- **status** [`s`]  
+`>status ({on|online|off|offline|dnd|idle|afk})`  
+Set status which is displayed to others. A little side effect of a selfbot is, that other users could see a other status then you set, because only the status of the bot will be displayd to other users. So you can set your status to 'dnd' or 'idlde', but everyone else could see you as 'online', because only the bots status is displayed to others.  
+*Set no argument to set your status to 'online'.*
+
+- **faq**  
+`>faq ({question link})`  
+That's just a little command for myself, because I'm getting a lot of questions which are often the same, so I can easily answer with links or something like that with a bot command instead of searching for it again and again.  
+Maybe later, I will implement a function, that you can set your links with the message into a config file to set links outside of the bot's code.  
+*Enter no argument to list all links.*
+
+- **gif**  
+`>gif {search query} ({-0|1|2|...})`  
+Just a simple gif command to send gifs from keywords *(and index of search result with attaching `-1` or some other index)* with giphy API.  
+If you have your own giphy API token, please open `main.py` and enter at `GIPHY_TOKEN` your giphy API token.
+
+- **guild** [`server`]  
+`>guild`  
+Getting various stats and information about current guild. 
+**ATTENTION:** Please only use this command on your own guilds or woth explicit permission of the guilds administrators or owners!  
+Exactly information:
+  - ID
+  - Owner (Name, ID)
+  - Region
+  - Members (Users, Online Users, Bots, Online Bots)
+  - Channels (Textchannels, Voicechannels)
+  - Created at - date
+  - Rolenames
+
+- **lmgtfy** [`google`]  
+`>lmgtfy {your search query}`  
+A command to create easy embeded [let me google that for you](http://lmgtfy.com/) links.
+
+- **globalnick** [`gnick`, `gn`]  
+`>gn {nickname}`  
+With thi command, you can automatically change your nickname on every server you are on, if you have the permission for that on the particualar servers.  
+**ATTENTION:** Please don't overuse this command, because I dont know exactly if it can lead to a discord account ban!
+
+---
+### SETUP
+
+Just clone or download that repository somewhere on your PC or server.
+
+For this bot, you need to install following python packages:
+- [discord.py](https://github.com/Rapptz/discord.py) (`pip3 install discord.py`)
+- [giphypop](https://github.com/shaunduncan/giphypop) (`pip3 install giphypop`)
+
+**For Windows:**  
+1. Check if you have installed python **3.5+**, when not, install it from [python.org](http://python.org)
+2. Open the containing folder.
+3. Double-click the batch file `start.bat`
+4. Enter your discord **account** token (**not** a bot account token!)  
+*If you don't know how to get your private account token, take a look below.*
+
+**For Linux / Debian / ...**  
+1. Navigate via terminal or SSH to the containing directory
+2. Check if you have installed python **3.5+**, if not, enter  
+`$ sudo apt-get install python3`  *or use that packet manager which is installed on your system*
+2. If you have not installed screen app, please do this with  
+`$ sudo apt-get install screen`  *or use that packet manager which is installed on your system*
+3. Start the start script with `$ sh start.sh`
+4. Enter your discord **account** token (**not** a bot account token!)  
+*If you don't know how to get your private account token, take a look below.*
+
+---
+### GETTING PRIVATE ACCOUNT TOKEN
+
+1. Open your desktop discord client
+2. Press `[STRG]` + `[SHIFT]` + `[I]` to open developer tools
+3. Navigate to tab `Application`
+4. Click on the left side on `Local Storage` -> `https://discordapp.com`
+5. In the table, search for the key `token` and copy your token
