@@ -1,18 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- 
 import os
-import discord      # pip3 install discord.py
+import discord
 import asyncio
 from discord import Game, Embed, Color, Status, ChannelType
 from discord.ext import commands
 
 key = os.environ['TOKEN']
 
-# Default command prefix is set to '>', change it here if you want
 PREFIX = ">"
 
-# Creating selfbot instance
-bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
+bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 
 ###################
@@ -21,9 +19,7 @@ bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', se
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
-    """
-    Command for changing 'game' status
-    """
+
     if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
         txt = " ".join(args)
@@ -39,12 +35,7 @@ async def game(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['s'])
 async def status(ctx, *args):
-    """
-    Change account status visible for others*
-    *an effect of using a userbot is, that the bot displays your status as 'online'
-    for other users while you can change your status to 'idle' or 'dnd', but
-    noone will see it until the bot changes the status.
-    """
+
     stati = {
         "on":       Status.online,
         "online":   Status.online,
@@ -73,11 +64,7 @@ async def status(ctx, *args):
 
 @bot.command(pass_context=True)
 async def faq(ctx, *args):
-    """
-    Thats just a verry helpful command for myself because a lot of people
-    asking me always the same questions in PM, so I can answer with
-    this short command easily.
-    """
+
     if args:
         if args[0] in FAQS:
             await bot.send_message(ctx.message.channel, embed=FAQS[args[0]][0])
@@ -91,10 +78,7 @@ async def faq(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['google'])
 async def lmgtfy(ctx, *args):
-    """
-    Just a simple lmgtfy command embeding the link into the message.*
-    *Links are still visible because discord asks you if this link is safe :/
-    """
+
     if args:
         url = "http://lmgtfy.com/?q=" + "+".join(args)
         await bot.send_message(ctx.message.channel, embed=Embed(description="**[Look here!](%s)**" % url, color=Color.gold()))
@@ -103,12 +87,7 @@ async def lmgtfy(ctx, *args):
 
 @bot.command(pass_context=True, aliases=['gnick', 'gn'])
 async def globalnick(ctx, *args):
-    """
-    With this command, you can change your nickname on all discord servers
-    you are on and you have the permission to chnage your nickname.
-    ATTENTION: Please don't overuse this command because I dont know,
-    if it could lead to a discord account ban!
-    """
+
     if args:
         newname = args[0]
         errors = []
