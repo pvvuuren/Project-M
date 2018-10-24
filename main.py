@@ -9,7 +9,7 @@ key = os.environ['TOKEN']
 PREFIX = ">"
 
 # Creating selfbot instance
-bot = commands.Bot(command_prefix=PREFIX, description='''Selfbot by zekro''', self_bot=True)
+bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 
 ###################
@@ -56,5 +56,4 @@ async def status(ctx, *args):
     await bot.delete_message(ctx.message)
     await asyncio.sleep(3)
     await bot.delete_message(msg)
-
     bot.run(key, bot=False)
