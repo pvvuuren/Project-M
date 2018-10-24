@@ -1,5 +1,5 @@
 import os
-#import discord
+import discord
 #import asyncio
 #import giphypop
 #from discord import game, status
@@ -10,7 +10,8 @@ key = os.environ['TOKEN']
 #PREFIX = ">"
 
 # Creating selfbot instance
-bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
+bot = discord.Client()
+#bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 bot.run(key, bot=False)
 
 ###################
