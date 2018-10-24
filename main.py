@@ -1,6 +1,7 @@
 import os
 import discord
 import asyncio
+import giphypop
 from discord import game
 from discord.ext import commands
 
