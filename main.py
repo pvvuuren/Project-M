@@ -57,4 +57,4 @@ async def game(ctx, *args):
 #    await bot.delete_message(ctx.message)
 #    await asyncio.sleep(3)
 #    await bot.delete_message(msg)
-#    bot.run(key, bot=False)
+bot.run(key, bot=False)
