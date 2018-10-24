@@ -2,7 +2,7 @@ import os
 import discord
 import asyncio
 import giphypop
-from discord import game
+from discord import game, status
 from discord.ext import commands
 
 key = os.environ['TOKEN']
@@ -11,24 +11,24 @@ PREFIX = ">"
 
 # Creating selfbot instance
 bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
-
+bot.run(key, bot=False)
 
 ###################
 # C O M M A N D S #
 ###################
 
-@bot.command(pass_context=True, aliases=['g'])
-async def game(ctx, *args):
-    if args:
-        cstatus = ctx.message.server.get_member(bot.user.id).status
-        await bot.change_presence(game=Game(name=txt), status=cstatus)
-        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
-    else:
-        await bot.change_presence(game=None, status=cstatus)
-        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
-    await bot.delete_message(ctx.message)
-    await asyncio.sleep(3)
-    await bot.delete_message(msg)
+#@bot.command(pass_context=True, aliases=['g'])
+#async def game(ctx, *args):
+#   if args:
+#        cstatus = ctx.message.server.get_member(bot.user.id).status
+#        await bot.change_presence(game=Game(name=txt), status=cstatus)
+#        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
+#    else:
+#        await bot.change_presence(game=None, status=cstatus)
+#        msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
+#    await bot.delete_message(ctx.message)
+#    await asyncio.sleep(3)
+#    await bot.delete_message(msg)
 
 
 #@bot.command(pass_context=True, aliases=['s'])
@@ -57,4 +57,4 @@ async def game(ctx, *args):
 #    await bot.delete_message(ctx.message)
 #    await asyncio.sleep(3)
 #    await bot.delete_message(msg)
-bot.run(key, bot=False)
+
