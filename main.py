@@ -10,7 +10,6 @@ key = os.environ['TOKEN']
 PREFIX = ">"
 
 # Creating selfbot instance
-#bot = discord.Client()
 bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 ###################
