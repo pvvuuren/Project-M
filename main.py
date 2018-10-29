@@ -12,7 +12,7 @@ key = os.environ['TOKEN']
 # Creating selfbot instance
 bot = discord.Client()
 #bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
-bot.run(key, bot=False)
+bot.run(key)
 
 ###################
 # C O M M A N D S #
