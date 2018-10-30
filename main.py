@@ -18,8 +18,9 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
-   if args:
+if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
+        txt = " ".join(args)
         await bot.change_presence(game=Game(name=txt), status=cstatus)
         msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
     else:
@@ -56,4 +57,4 @@ async def status(ctx, *args):
     await bot.delete_message(ctx.message)
     await asyncio.sleep(3)
     await bot.delete_message(msg)
-bot.run(key, bot=False)
+bot.run(key, bot=False)l
