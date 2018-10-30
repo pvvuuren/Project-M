@@ -2,7 +2,7 @@ import os
 import discord
 import asyncio
 import giphypop
-from discord import game, status
+#from discord import game, status
 from discord.ext import commands
 
 key = os.environ['TOKEN']
