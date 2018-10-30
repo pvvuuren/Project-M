@@ -18,7 +18,7 @@ bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
 
 @bot.command(pass_context=True, aliases=['g'])
 async def game(ctx, *args):
-if args:
+	if args:
         cstatus = ctx.message.server.get_member(bot.user.id).status
         txt = " ".join(args)
         await bot.change_presence(game=Game(name=txt), status=cstatus)
