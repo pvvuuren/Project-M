@@ -1,7 +1,8 @@
-git+https://github.com/Rapptz/discord.py
 aiohttp==1.0.5
+async-timeout==2.0.0
 certifi==2018.10.15
 chardet==3.0.4
+discord.py==0.16.12
 giphypop==0.3
 idna==2.7
 multidict==4.1.0
