@@ -13,9 +13,9 @@ async def on_ready():
     # To start background tasks
     game_info.start()
 
-	async def game_info():
+async def game_info():
     activity = discord.Activity(name="testing", type=discord.ActivityType.playing)
     await bot.change_presence(activity=activity)
 	
 	
-client.run(key)  
+client.run(key) 
