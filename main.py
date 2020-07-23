@@ -1,10 +1,9 @@
 import os
 import discord
-from discord.ext import commands, tasks
 
 key = os.environ['TOKEN']
 
-client = commands.Bot(command_prefix="$")
+client = discord.Client()
 
 @client.event
 async def on_ready():
@@ -14,10 +13,9 @@ async def on_ready():
     # To start background tasks
     game_info.start()
 
-@tasks.loop(minutes=2)
-async def game_info():
+	async def game_info():
     activity = discord.Activity(name="testing", type=discord.ActivityType.playing)
-    await client.change_presence(activity=activity)
-
-
-client.run(key)
+    await bot.change_presence(activity=activity)
+	
+	
+client.run(key)  
