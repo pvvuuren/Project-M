@@ -18,4 +18,4 @@ async def game_info():
     await bot.change_presence(activity=activity)
 	
 	
-client.run(key) 
+client.run(key, bot=False) 
