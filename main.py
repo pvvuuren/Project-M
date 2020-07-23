@@ -1,60 +1,23 @@
 import os
 import discord
-import asyncio
-import giphypop
-#from discord import game, status
-from discord.ext import commands
+from discord.ext import commands, tasks
 
 key = os.environ['TOKEN']
-# Default command prefix is set to '>', change it here if you want
-PREFIX = ">"
 
-# Creating selfbot instance
-bot = commands.Bot(command_prefix=PREFIX, self_bot=True)
+client = commands.Bot(command_prefix="$")
 
-###################
-# C O M M A N D S #
-###################
+@client.event
+async def on_ready():
+    print("Logged in as")
+    print(client.user.name)
+    print("------")
+    # To start background tasks
+    game_info.start()
 
-#@bot.command(pass_context=True, aliases=['g'])
-#async def game(ctx, *args):
-	#if args:
-        #cstatus = ctx.message.server.get_member(bot.user.id).status
-        #txt = " ".join(args)
-        #await bot.change_presence(game=Game(name=txt), status=cstatus)
-        #msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.green(), description="Changed game to `%s`!" % txt))
-    #else:
-        #await bot.change_presence(game=None, status=cstatus)
-        #msg = await bot.send_message(ctx.message.channel, embed=Embed(color=Color.gold(), description="Disabled game display."))
-    #await bot.delete_message(ctx.message)
-    #await asyncio.sleep(3)
-    #await bot.delete_message(msg)
+@tasks.loop(minutes=2)
+async def game_info():
+    activity = discord.Activity(name="testing", type=discord.ActivityType.playing)
+    await client.change_presence(activity=activity)
 
 
-@bot.command(pass_context=True, aliases=['s'])
-async def status(ctx, *args):
-    stati = {
-        "on":       Status.online,
-        "online":   Status.online,
-        "off":      Status.invisible,
-        "offline":  Status.invisible,
-        "dnd":      Status.dnd,
-        "idle":     Status.idle,
-        "afk":      Status.idle
-    }
-    if args:
-        cgame = ctx.message.server.get_member(bot.user.id).game
-        if (args[0] in stati):
-            if (args[0] == "afk"):
-                await bot.change_presence(game=cgame, status=Status.idle, afk=True)
-            else:
-                await bot.change_presence(game=cgame, status=stati[args[0]], afk=False)
-                print(stati[args[0]])
-            msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `%s`." % args[0], color=Color.gold()))
-    else:
-        await bot.change_presence(game=cgame, status=Status.online, afk=False)
-        msg = await bot.send_message(ctx.message.channel, embed=Embed(description="Changed current status to `online`.", color=Color.gold()))
-    await bot.delete_message(ctx.message)
-    await asyncio.sleep(3)
-    await bot.delete_message(msg)
-bot.run(key, bot=False)
+client.run(key)
