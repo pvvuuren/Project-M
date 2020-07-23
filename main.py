@@ -1,5 +1,8 @@
 import os
 import discord
+import asyncio
+import giphypop
+from discord import game, status
 
 key = os.environ['TOKEN']
 
