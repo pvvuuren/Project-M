@@ -5,7 +5,7 @@ key = os.environ['TOKEN']
 
 client = discord.Client()
 
-@client.event
+@client.event(self_bot=True)
 async def game_info():
     activity = discord.Activity(name="I am watching", type=discord.ActivityType.playing)
     await bot.change_presence(activity=activity)
