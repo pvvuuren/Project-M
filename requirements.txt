@@ -1,10 +1,1 @@
-git+https://github.com/Rapptz/discord.py
-aiohttp==1.0.5
-certifi==2018.10.15
-chardet==3.0.4
-giphypop==0.3
-idna==2.7
-multidict==4.1.0
-requests==2.20.0
-urllib3==1.24.2
-websockets==3.4
+
