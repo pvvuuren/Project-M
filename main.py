@@ -4,6 +4,6 @@ import discord
 key = os.environ['TOKEN']
 
 #CREATE THE BOT INSTANCE
-client = discord.Client(self_bot=True)
+client = discord.Client()
 
 client.run(key, bot=False)
